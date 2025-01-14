@@ -1,196 +1,128 @@
-/* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+const exchangeRate = 0.0024; // Example: 1 HUF = 0.0027 EUR
 
-/* Dark Mode Styling */
-body {
-  font-family: "Arial", sans-serif;
-  background-color: #1e1e1e;
-  color: #f5f5f5;
-  line-height: 1.8;
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const langHuBtn = document.getElementById("lang-hu");
+    const langEnBtn = document.getElementById("lang-en");
 
-/* Container */
-.container {
-  max-width: 960px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #2e2e2e;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
-}
+    const title = document.getElementById("title");
+    const intro = document.getElementById("intro");
+    const contactBtn = document.getElementById("contact-btn");
+    const referencesBtn = document.getElementById("references-btn");
+    const serviceHeader = document.getElementById("service-header");
+    const priceHeader = document.getElementById("price-header");
 
-/* Language Switch */
-.lang-switch {
-  text-align: center;
-  margin-bottom: 20px;
-}
+    const priceToggle = document.getElementById("price-toggle");
+    const priceTable = document.getElementById("price-table");
+    const priceRows = document.querySelectorAll("#price-table tbody tr");
 
-.lang-switch img {
-  width: 40px;
-  margin: 0 15px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
+    const translations = {
+        hu: {
+            title: "Designer - Megbízásokat vállalok",
+            intro:
+                "23 éves designer vagyok, motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket és elképzeléseiket precíz, letisztult formában kézhez kapni!",
+            contactBtn: "Kapcsolat",
+            referencesBtn: "Referenciák",
+            serviceHeader: "Szolgáltatás",
+            priceHeader: "Ár",
+            priceToggleShow: "Árlista",
+            priceToggleHide: "Árlista elrejtése",
+            services: {
+                "Sticker": "Matrica",
+                "Illustration": "Illusztráció",
+                "Creative Design": "Kreatív dizájn",
+                "Character Design (Front View)": "Karakter dizájn (Elölnézet)",
+                "Character Design (Full Rotation)": "Karakter dizájn (Teljes körbeforgás)",
+                "Pixel Art": "Pixel Art",
+                "Pixel Art Animation": "Pixel Art animáció",
+                "Poster Design": "Poszter dizájn",
+                "Other Ideas": "Egyéb ötletek",
+            },
+            custom: "Egyedi megállapodás alapján",
+            currency: (price) => `${price.toLocaleString()} Ft`,
+        },
+        en: {
+            title: "Designer - Open for Commissions",
+            intro:
+                "I am a 23-year-old designer and motivated creator. I offer my creative work to those who want their ideas and concepts delivered in a precise, refined form!",
+            contactBtn: "Contact Me",
+            referencesBtn: "References",
+            serviceHeader: "Service",
+            priceHeader: "Price",
+            priceToggleShow: "Prices",
+            priceToggleHide: "Hide Prices",
+            services: {
+                "Sticker": "Sticker",
+                "Illustration": "Illustration",
+                "Creative Design": "Creative Design",
+                "Character Design (Front View)": "Character Design (Front View)",
+                "Character Design (Full Rotation)": "Character Design (Full Rotation)",
+                "Pixel Art": "Pixel Art",
+                "Pixel Art Animation": "Pixel Art Animation",
+                "Poster Design": "Poster Design",
+                "Other Ideas": "Other Ideas",
+            },
+            custom: "Custom Agreement",
+            currency: (price) => `€${Math.ceil(price * exchangeRate).toLocaleString()}`,
+        },
+    };
 
-.lang-switch img:hover {
-  transform: scale(1.2);
-}
+    const applyTranslations = (lang) => {
+        const langData = translations[lang];
 
-/* Header */
-.header {
-  text-align: center;
-  margin-bottom: 30px;
-}
+        title.textContent = langData.title;
+        intro.textContent = langData.intro;
+        contactBtn.textContent = langData.contactBtn;
+        referencesBtn.textContent = langData.referencesBtn;
+        serviceHeader.textContent = langData.serviceHeader;
+        priceHeader.textContent = langData.priceHeader;
 
-.header h1 {
-  font-size: 2.8em;
-  color: #f1c40f;
-}
+        // Update the toggle text based on the language
+        priceToggle.textContent = langData.priceToggleShow;
 
-.header p {
-  font-size: 1.5em;
-  color: #a3a3a3;
-}
+        priceRows.forEach((row) => {
+            const serviceCell = row.cells[0];
+            const priceCell = row.cells[1];
+            const hufPrice = row.getAttribute("data-huf");
 
-/* Intro Section */
-.intro-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
-  flex-wrap: wrap; /* Allow content to wrap on smaller screens */
-}
+            const serviceName = Object.keys(translations.hu.services).find(
+                (key) => translations.hu.services[key] === serviceCell.textContent || key === serviceCell.textContent
+            );
 
-.intro {
-  flex: 1;
-  margin-right: 20px;
-  margin-left: 20px;
-  font-size: 1.2em;
-  text-align: justify; /* Improve readability */
-}
+            serviceCell.textContent = langData.services[serviceName] || langData.custom;
+            priceCell.textContent = hufPrice ? langData.currency(parseInt(hufPrice)) : langData.custom;
+        });
+    };
 
-.photo {
-  flex-shrink: 0;
-  margin-bottom: 20px; /* Add spacing for mobile */
-}
+    langHuBtn.addEventListener("click", () => applyTranslations("hu"));
+    langEnBtn.addEventListener("click", () => applyTranslations("en"));
 
-.photo img {
-  width: 180px;
-  height: 180px;
-  border-radius: 10%;
-  border: 3px solid #f1c40f;
-  display: block;
-  margin: 0 auto; /* Center the photo in mobile view */
-}
+    // Smooth toggle for price table
+    priceToggle.addEventListener("click", () => {
+        if (priceTable.classList.contains("hidden")) {
+            priceTable.classList.remove("hidden");
+            priceTable.style.maxHeight = `${priceTable.scrollHeight}px`;
+            priceToggle.textContent =
+                priceToggle.textContent === translations.en.priceToggleShow
+                    ? translations.en.priceToggleHide
+                    : translations.hu.priceToggleHide;
+        } else {
+            priceTable.style.maxHeight = "0px";
+            priceTable.addEventListener(
+                "transitionend",
+                () => {
+                    if (priceTable.style.maxHeight === "0px") {
+                        priceTable.classList.add("hidden");
+                    }
+                },
+                { once: true }
+            );
+            priceToggle.textContent =
+                priceToggle.textContent === translations.en.priceToggleHide
+                    ? translations.en.priceToggleShow
+                    : translations.hu.priceToggleShow;
+        }
+    });
 
-/* Adjust layout for smaller screens */
-@media (max-width: 768px) {
-  .intro-section {
-    flex-direction: column; /* Stack content vertically */
-    text-align: center;
-  }
-
-  .intro {
-    margin-right: 0;
-    margin-left: 0;
-    margin-top: 10px; /* Add spacing above the text */
-  }
-}
-
-@media (max-width: 480px) {
-  .intro-section {
-    padding: 0 10px; /* Add padding for smaller screens */
-  }
-
-  .photo img {
-    width: 150px; /* Scale down the image for very small screens */
-    height: 150px;
-  }
-
-  .intro {
-    font-size: 1em; /* Adjust text size for better readability */
-  }
-}
-
-/* Price List */
-.price-list {
-  text-align: center;
-}
-
-#price-toggle {
-  background-color: #00b912;
-  color: #ffffff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#price-toggle:hover {
-  background-color: #209c23;
-}
-
-#price-table {
-  width: 100%;
-  margin-top: 15px;
-  border-collapse: collapse;
-  font-size: 1.2em;
-}
-
-#price-table th, #price-table td {
-  border: 1px solid #444;
-  padding: 12px;
-  text-align: left;
-}
-
-#price-table th {
-  background-color: #34495e;
-  color: #f5f5f5;
-}
-
-#price-table td {
-  background-color: #2e2e2e;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Buttons */
-.actions {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.actions button {
-  background-color: #f1c40f;
-  color: #1e1e1e;
-  border: none;
-  padding: 12px 25px;
-  margin: 10px;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 1.1em;
-  transition: background-color 0.3s ease;
-}
-
-.actions button:hover {
-  background-color: #d4ac0d;
-}
-
-#price-table {
-  overflow: hidden;
-  transition: max-height 0.001s ease;
-}
-
-.hidden {
-  max-height: 0px;
-  visibility: hidden;
-}
-
+    // Initialize with Hungarian translations
+    applyTranslations("hu");
+});
