@@ -1,4 +1,4 @@
-const exchangeRate = 0.0027; // Example: 1 HUF = 0.0027 EUR
+const exchangeRate = 0.0024; // Example: 1 HUF = 0.0027 EUR
 
 document.addEventListener("DOMContentLoaded", () => {
     const langHuBtn = document.getElementById("lang-hu");
@@ -17,10 +17,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const translations = {
         hu: {
-            title: "Dizájner - Megbízásokat vállalok",
+            title: "Designer - Megbízásokat vállalok",
             intro:
-                "23 éves dizájner vagyok, motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket és elképzeléseiket precíz, letisztult formában kézhez kapni!",
-            contactBtn: "Érdekel!",
+                "23 éves designer vagyok, motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket és elképzeléseiket precíz, letisztult formában kézhez kapni!",
+            contactBtn: "Kapcsolat",
             referencesBtn: "Referenciák",
             serviceHeader: "Szolgáltatás",
             priceHeader: "Ár",
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
             title: "Designer - Open for Commissions",
             intro:
                 "I am a 23-year-old designer and motivated creator. I offer my creative work to those who want their ideas and concepts delivered in a precise, refined form!",
-            contactBtn: "I'm Interested!",
+            contactBtn: "Contact Me",
             referencesBtn: "References",
             serviceHeader: "Service",
             priceHeader: "Price",
@@ -125,4 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize with Hungarian translations
     applyTranslations("hu");
+});
+
 });
