@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demjén Sándor Levente - Design</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Language Switcher -->
+        <div class="lang-switch">
+            <img src="hungarian-flag.png" alt="Magyar" id="lang-hu" class="lang-btn">
+            <img src="english-flag.png" alt="English" id="lang-en" class="lang-btn">
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <h1 id="name">dslevi.</h1>
+            <p id="title">Designer - Megbízásokat vállalok</p>
+        </div>
+
+        <!-- Introduction and Photo -->
+        <div class="intro-section">
+            <div class="photo">
+                <img src="en.jpg" id="profile-photo" alt="Profile Photo">
+            </div>
+            <div class="intro">
+                <p id="intro">
+                    23 éves dizájner vagyok, motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket 
+                    és elképzeléseiket precíz, letisztult formában kézhez kapni!
+                </p>
+            </div>
+        </div>
+
+        <!-- Price List Dropdown -->
+        <div class="price-list">
+            <button id="price-toggle">Árlista</button>
+            <table id="price-table" class="hidden">
+                <thead>
+                    <tr>
+                        <th id="service-header">Szolgáltatás</th>
+                        <th id="icon-header"></th>
+                        <th id="price-header">Ár</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-huf="10000" data-img="img1.jpg">
+                        <td>Matrica</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>10.000 Ft</td>
+                    </tr>
+                    <tr data-huf="20000" data-img="img2.jpg">
+                        <td>Illusztráció</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>20.000 Ft</td>
+                    </tr>
+                    <tr data-huf="25000" data-img="img3.jpg">
+                        <td>Kreatív dizájn</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>25.000 Ft</td>
+                    </tr>
+                    <tr data-huf="10000" data-img="img4.jpg">
+                        <td>Karakter dizájn (Elölnézet)</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>10.000 Ft</td>
+                    </tr>
+                    <tr data-huf="30000" data-img="img5.jpg">
+                        <td>Karakter dizájn (Teljes körbeforgás)</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>30.000 Ft</td>
+                    </tr>
+                    <tr data-huf="10000" data-img="img6.jpg">
+                        <td>Pixel Art</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>10.000 Ft</td>
+                    </tr>
+                    <tr data-huf="18000" data-img="img7.jpg">
+                        <td>Pixel Art animáció</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>18.000 Ft</td>
+                    </tr>
+                    <tr data-huf="10000" data-img="img8.jpg">
+                        <td>Poszter dizájn</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>10.000 Ft</td>
+                    </tr>
+                    <tr>
+                        <td>Egyéb ötletek</td>
+                        <td><a href="#" class="eye-icon"><img src="icon.png" alt="Icon" class="clickable-icon"></a></td>
+                        <td>Egyedi megállapodás alapján</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+
+        <!-- Call-to-Action Buttons -->
+        <div class="actions">
+            <button id="contact-btn" onclick="window.location.href='mailto:dslevi01@gmail.com'">Kapcsolat</button>
+            <button id="references-btn" onclick="window.location.href='references.html'">Referenciák</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <img id="modal-img" src="" alt="Service Image">
+        </div>
+    </div>
+</body>
+</html>
