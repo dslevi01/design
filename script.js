@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         hu: {
             title: "Designer - Megbízásokat vállalok",
             intro:
-                "23 éves designer vagyok, motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket és elképzeléseiket precíz, letisztult formában kézhez kapni!",
+                "Demjén Sándor Levente vagyok, 23 éves motivált alkotó. Kreatív munkámat ajánlom azoknak, akik szeretnék ötleteiket és elképzeléseiket precíz, letisztult formában kézhez kapni!",
             contactBtn: "Kapcsolat",
             referencesBtn: "Referenciák",
             serviceHeader: "Szolgáltatás",
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         en: {
             title: "Designer - Open for Commissions",
             intro:
-                "I am a 23-year-old designer and motivated creator. I offer my creative work to those who want their ideas and concepts delivered in a precise, refined form!",
+                "I am Sandor Levente Demjen, 23-year-old designer and motivated creator. I offer my creative work to those who want their ideas and concepts delivered in a precise, refined form!",
             contactBtn: "Contact Me",
             referencesBtn: "References",
             serviceHeader: "Service",
